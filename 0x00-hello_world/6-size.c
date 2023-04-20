@@ -8,7 +8,7 @@
  * Print f prints Size of long long int in bytes
  * Print f prints Size of float in bytes
  */
-int main()
+int main(void)
 {
 	printf("Size of a char: %d byte(s)\n", sizeof(char));
 	printf("Size of an int: %d byte(s)\n", sizeof(int));
