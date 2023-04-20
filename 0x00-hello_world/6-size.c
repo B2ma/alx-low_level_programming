@@ -1,12 +1,8 @@
 #include <stdio.h>
 
 /**
- * main -Entry point
- * Print f prints Size of Char in bytes
- * Print f prints Size of int in bytes
- * Print f prints Size of long int in bytes
- * Print f prints Size of long long int in bytes
- * Print f prints Size of float in bytes
+ * main - prints the sizes of various data types on the computer
+ *Return: Always 0 (Success)
  */
 int main(void)
 {
