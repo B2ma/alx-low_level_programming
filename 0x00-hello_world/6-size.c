@@ -10,10 +10,10 @@
   */
 int main(void)
 {
-	printf("Size of Char in bytes: 1%d bytes\n", sizeof(char));
-	printf("Size of int in bytes: 1%d bytes\n", sizeof(int));
-	Printf("Size of long int in bytes: 1%d bytes\n", sizeof(long));
-	printf("Size of long long int in bytes: 1%d bytes\n", sizeof()long long int);
-	printf("Size of float in bytes: 1%d bytes\n", sizeof(float));
-	return (0);
+	printf("Size of Char in bytes: %1d bytes\n", sizeof(char));
+	printf("Size of int in bytes: %1d bytes\n", sizeof(int));
+	printf("Size of long int in bytes: %1d bytes\n", sizeof(long));
+	printf("Size of long long int in bytes: %1d bytes\n", sizeof(long long int);
+	printf("Size of float in bytes: %1d bytes\n", sizeof(float));
+	return(0)
 }
