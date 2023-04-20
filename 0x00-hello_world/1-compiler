@@ -1,2 +1,2 @@
 #!/bin/bash
-make main
+gcc -c $CFILE -o ${CFILE%.c}.o
