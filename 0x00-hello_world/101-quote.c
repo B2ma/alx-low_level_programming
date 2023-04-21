@@ -8,8 +8,7 @@
   */
 int main(void)
 {
-	char const *message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
-
-	write(STDERR_FILENO, message, 59);
+	write(STDERR_FILENO, "and that piece of art is useful\" - ", 35);
+	write(STDERR_FILENO, "Dora Korpar, 2015-10-19\n", 25);
 	return (1);
 }
