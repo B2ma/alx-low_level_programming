@@ -1,12 +1,16 @@
-#include<stdio.h>
+#include <unistd.h>
 
 /**
   * main - Entry point
-  * Description: prints exactly and that piece of art is useful"
-  *	- Dora Korpar,2015-10-19, followed by a new line, to the standard error.
-  * Return: Always 0 (Success)
+  * Description: prints and that piece of art is useful"
+  *	- Dora Korpar, 2015-10-19 to standard error
+  * Return: 1 error message
   */
 int main(void)
 {
-	fwrite(STDERR_FILENO, "and that piece of art is useful\" \- Dora Korpar, 2015\-10\-19\n", sizeof("and that piece of art is useful\" \- Dora Korpar, 2015\-10\-19\n") -1);
-	return(0);
+	const char* message = "and that piece of art is useful\n";
+
+	write(STDERR_FILENO, message, 31);
+	return (1);
+}
+
