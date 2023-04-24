@@ -11,7 +11,7 @@ int main(void)
 	char hexa;
 
 	hexa = '0';
-	while (hexa <= 'f')
+	while (hexa <= 9 || (hexa >= 'a' && hexa <= 'f'))
 	{
 		putchar(hexa);
 		hexa++;
