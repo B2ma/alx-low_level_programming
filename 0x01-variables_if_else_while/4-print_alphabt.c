@@ -3,7 +3,7 @@
 /**
   * main - Entry point
   * Description: put char prints the alphabet in lowercase except q and e
-  * Return 0 always (Success)
+  * Return: 0 always (Success)
   */
 int main(void)
 {
