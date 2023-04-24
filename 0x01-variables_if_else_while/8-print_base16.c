@@ -8,13 +8,18 @@
   */
 int main(void)
 {
-	char hexa;
+	int hexa;
 
-	hexa = '0';
-	while (hexa <= 9 || (hexa >= 'a' && hexa <= 'f'))
+	for (hexa = 0; hexa < 16; hexa++)
 	{
-		putchar(hexa);
-		hexa++;
+	if (hexa < 10)
+	{
+		putchar(hexa + '0');
+	}
+	else
+	{
+		putchar(hexa - 10 + 'a');
+	}
 	}
 	putchar('\n');
 	return (0);
