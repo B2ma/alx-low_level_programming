@@ -15,23 +15,15 @@ void print_to_98(int n)
 	{
 	for (i = n; i < 98; i++)
 	{
-		putchar(i / 10 + '0');
-		putchar(i % 10 + '0');
-		putchar(',');
-		putchar(' ');
+		printf("%d, ", i);
 	}
 	}
 	else
 	{
-	for (i = 1; i > 98; i++)
+	for (i = n; i > 98; i--)
 	{
-		putchar(i / 10 + '0');
-		putchar(i % 10 + '0');
-		putchar(',');
-		putchar(' ');
+		printf("%d, ", i);
 	}
 	}
-	putchar('9');
-	putchar('8');
-	putchar('\n');
+	printf("98\n");
 }
