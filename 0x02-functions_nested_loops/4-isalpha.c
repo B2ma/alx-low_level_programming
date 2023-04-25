@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
-  * Description: _isalpha Returns 1 if c is a letter
+  * _isalpha - Returns 1 if c is a letter
   *	lowercase or uppercase and Returns 0 otherwise
+  * @c: given letters from wher we get c
   * Return: 1 if c is letter 0 otherwise
   */
 int _isalpha(int c)
