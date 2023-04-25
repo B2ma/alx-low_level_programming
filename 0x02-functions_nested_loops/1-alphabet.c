@@ -1,10 +1,9 @@
 #include "main.h"
 
 /**
- * main -Entry point
+ * print_alphabet - prints the alphabet
  * Description: the program references main.h to print
  *	the alphabet using _putchar
- * Return: Always 0
  */
 void print_alphabet(void)
 {
