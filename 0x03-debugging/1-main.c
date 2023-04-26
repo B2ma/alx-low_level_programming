@@ -2,8 +2,6 @@
 
 /**
 * main - causes an infinite loop
-* The post-increment operator is mising in
-*	the while loop
 * Return: 0
 */
 
@@ -14,9 +12,11 @@ int main(void)
 	printf("Infinite loop incoming :(\n");
 
 	i = 0;
+
 	while (i < 10)
 	{
 		putchar(i);
+		break;
 	}
 	printf("Infinite loop avoided! \\o/\n");
 
