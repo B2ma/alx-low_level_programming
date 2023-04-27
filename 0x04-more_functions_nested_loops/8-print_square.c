@@ -23,6 +23,7 @@ void print_square(int size)
 				_putchar('#');
 				length++;
 			}
+			if (lines != size - 1)
 			_putchar('\n');
 			lines++;
 		}
