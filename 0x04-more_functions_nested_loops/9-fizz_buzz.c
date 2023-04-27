@@ -26,10 +26,7 @@ int main(void)
 		{
 			printf("%d ", i);
 		}
-		if (i % 10 == 0)
-		{
-			printf("\n");
-		}
 	}
+	printf("%d ", i);
 	return (0);
 }
