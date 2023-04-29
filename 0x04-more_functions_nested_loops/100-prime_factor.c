@@ -1,42 +1,35 @@
-#include<stdio.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <math.h>
 
 /**
-  * isprime - prints the prime numbers
-  * @n: number to find the largest prime
-  * Description:  finds and prints the largest prime factor of the number
-  * Return: 0
-  */
-bool isprime(long long int n)
-{
-	long long int i;
-
-	if (n < 2)
-	{
-		return (false);
-	}
-	for (i = 2; i <= n / 2; i++)
-	{
-		if (n % i == 0)
-		{
-			return (false);
-		}
-	}
-	return (true);
-}
-
+ * main - finds and prints the largest prime factor of the number 612852475143
+ * followed by a new line
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-	long long int n = 612852475143;
-	long long int i;
+	long int n;
+	long int max;
+	long int i;
 
-	for (i = n; i >= 2; i--)
+	n = 612852475143;
+	max = -1;
+
+	while (n % 2 == 0)
 	{
-		if (isprime(i))
+		max = 2;
+		n /= 2;
+	}
+	for (i = 3; i <= sqrt(n); i = i + 2)
+	{
+		while (n % i == 0)
 		{
-			printf("%lld\n", i);
-			break;
+			max = i;
+			n = n / i;
 		}
 	}
+	if (n > 2)
+	max = n;
+	printf("%ld\n", max);
 	return (0);
 }
