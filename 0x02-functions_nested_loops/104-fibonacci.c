@@ -11,16 +11,13 @@ int main(void)
 	int n = 98;
 	unsigned long int j1 = 1, j2 = 2, nextnum;
 
-	printf("%lu, %lu, ", j1, j2);
-	for (n = 1; n <= 98; n++)
+	printf("1, 2, ");
+	for (n = 3; n <= 98; n++)
 	{
 		nextnum = j1 + j2;
+		printf("%lu", nextnum);
 		j1 = j2;
 		j2 = nextnum;
-		{
-			printf("%lu", nextnum);
-			n++;
-		}
 		if (n != 98)
 		{
 			printf(", ");
