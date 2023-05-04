@@ -20,5 +20,6 @@ char *_strcat(char *dest, char *src)
 		destlen++;
 	}
 	dest[destlen] = '\0';
+	_putchar('\n');
 	return (dest);
 }
