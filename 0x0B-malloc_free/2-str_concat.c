@@ -17,10 +17,17 @@ char *str_concat(char *s1, char *s2)
 	s1Len = strlen(s1);
 	s2Len = strlen(s2);
 	s1s2Malloc = malloc(sizeof(char) * (s1Len + s2Len + 1));
-	if (s1 == NULL || s2 == NULL || s1s2Malloc == NULL)
+	if (s1s2Malloc == NULL)
 	{
 		return (NULL);
 	}
+	else if (s1 == NULL)
+	{
+		strcpy(s1s2Malloc, s2);
+	}
+	else if (s2 == NULL)
+	{
+		strcpy(s1s2Malloc, s1);
 	else
 	{
 		strcpy(s1s2Malloc, s1);
