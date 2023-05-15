@@ -10,28 +10,25 @@
   */
 char *str_concat(char *s1, char *s2)
 {
-	int s1Len;
-	int s2Len;
-	char *s1s2Malloc;
+	int s1Len = 0;
+	int s2Len = 0;
+	char *s1s2Malloc = NULL
 
-	s1Len = strlen(s1);
-	s2Len = strlen(s2);
+	if (s1 != NULL)
+		s1Len = strlen(s1);
+	if (s2 != NULL)
+		s2Len = strlen(s2);
 	s1s2Malloc = malloc(sizeof(char) * (s1Len + s2Len + 1));
 	if (s1s2Malloc == NULL)
 	{
 		return (NULL);
 	}
-	else if (s1 == NULL)
-	{
-		strcpy(s1s2Malloc, s2);
-	}
-	else if (s2 == NULL)
-	{
-		strcpy(s1s2Malloc, s1);
 	else
 	{
-		strcpy(s1s2Malloc, s1);
-		strcat(s1s2Malloc, s2);
+		if (s1 != NULL)
+			strcpy(s1s2Malloc, s1);
+		if (s2 != NULL)
+			strcat(s1s2Malloc, s2);
 	}
 	return (s1s2Malloc);
 }
