@@ -23,8 +23,10 @@ char *str_concat(char *s1, char *s2)
 	}
 	else
 	{
-		strcpy(s1s2Malloc, s1);
-		strcat(s1s2Malloc, s2);
+		if (s1 != NULL)
+			strcpy(s1s2Malloc, s1);
+		if (s2 != NULL)
+			strcat(s1s2Malloc, s2);
 	}
 	return (s1s2Malloc);
 }
