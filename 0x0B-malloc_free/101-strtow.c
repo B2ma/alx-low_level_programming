@@ -13,7 +13,7 @@ char **strtow(char *str)
 	int words = 0, stringLength = strlen(str);
 	char **strMalloc = (char **)malloc(sizeof(char *) * (stringLength + 1));
 
-	if (str == NULL || strcmp(str, "") == 0 || strcmp(str, " ") == 0)
+	if (str == NULL || *str == '\0' || (*str == ' ' && *(str + 1) == '\0'))
 		return (NULL);
 	if (strMalloc == NULL)
 		return (NULL);
