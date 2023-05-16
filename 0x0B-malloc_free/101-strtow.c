@@ -29,7 +29,7 @@ char **strtow(char *str)
 		{
 			i++;
 		}
-		if (i - j == 0 || (i - j == 1 && str[i] == '\t'))
+		if (i - j == 0 && str[i] == '\t')
 			return (NULL);
 		strMalloc[words] = (char *)malloc(sizeof(char) * (i - j + 1));
 
