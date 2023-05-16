@@ -22,12 +22,12 @@ char *argstostr(int ac, char **av)
 	{
 		tStringLength += strlen(av[i]);
 	}
-	avMalloc = (char *)malloc(sizeof(char) * (tStringLength + ac - 1));
+	avMalloc = (char *)malloc(sizeof(char) * (tStringLength + ac + 1));
 	if (avMalloc == NULL)
 	{
 		return (NULL);
 	}
-	for (i = 1; i < ac; i++)
+	for (i = 0; i < ac; i++)
 	{
 		strcat(avMalloc, av[i]);
 		strcat(avMalloc, "\n");
