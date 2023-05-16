@@ -18,11 +18,11 @@ char *argstostr(int ac, char **av)
 	{
 		return (NULL);
 	}
-	for (i = 1; i < ac; i++)
+	for (i = 0; i < ac; i++)
 	{
 		tStringLength += strlen(av[i]);
 	}
-	avMalloc = (char *)malloc(sizeof(char) * (tStringLength + 1));
+	avMalloc = (char *)malloc(sizeof(char) * (tStringLength + ac - 1));
 	if (avMalloc == NULL)
 	{
 		return (NULL);
