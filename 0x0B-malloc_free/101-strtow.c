@@ -28,6 +28,8 @@ char **strtow(char *str)
 		{
 			i++;
 		}
+		if (i - j == 0)
+			return (NULL);
 		strMalloc[words] = (char *)malloc(sizeof(char) * (i - j + 1));
 
 		if (strMalloc[words] == NULL)
