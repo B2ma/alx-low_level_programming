@@ -30,7 +30,7 @@ char **strtow(char *str)
 		}
 		if (i - j == 0)
 			return (NULL);
-		strMalloc[words] = (char *)malloc(sizeof(char) * (i - j + 1));
+		strMalloc[words] = (char *)malloc(sizeof(char) * (i - j + 2));
 
 		if (strMalloc[words] == NULL)
 		{
