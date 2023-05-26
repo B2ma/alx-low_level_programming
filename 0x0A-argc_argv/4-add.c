@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		{
 			if (!isdigit(argv[i][j]))
 			{
-				fprintf(stderr, "Error\n");
+				printf("Error\n");
 				return (1);
 			}
 		}
