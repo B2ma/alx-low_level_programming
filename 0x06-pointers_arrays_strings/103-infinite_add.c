@@ -10,35 +10,41 @@
   */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int i, j, k, len, overflow, temp_tot = 0;
+	int i = 0, j = 0, overflow = 0, digits = 0;
+	int val1, val2, temp_sum;
 
-	for (i = 0; *(n1 + i); i++)
-		;
-	for (j = 0; *(n2 + j); j++)
-		;
-	len = (i > j) ? i : j;
-	if (len >= size_r - 1)
-		return (0);
-	*(r + len) = '\0';
+	while (n1[i])
+		i++;
+	while (n2[j])
+		j++;
 	i--;
 	j--;
-	for (k = len - 1; k >= 0; k--)
+	if (j >= size_r || i >= size_r)
+		return (0);
+	while (j >= 0 || i >= 0 || overflow)
 	{
-		temp_tot = overflow;
-		if (i >= 0)
-			temp_tot += *(n1 + i--) - '0';
-		if (j >= 0)
-			temp_tot += *(n2 + j--) - '0';
-		*(r + k) = (temp_tot % 10) + '0';
-		overflow = temp_tot / 10;
-	}
-	if (overflow)
-	{
-		if (len >= size_r - 2)
+		val1 = (i >= 0) ? (n1[i--] - '0') : 0;
+		val2 = (j >= 0) ? (n2[j--] - '0') : 0;
+		temp_sum = val1 + val2 + overflow;
+		overflow = temp_sum / 10;
+		if (digits >= size_r - 1)
 			return (0);
-		for (i = k; k > 0; k--)
-			*(r + k) = *(r + k - 1);
-		*r = overflow + '0';
+		r[digits++] = (temp_sum % 10) + '0';
+	}
+	if (overflow && digits < size_r - 1)
+		r[digits++] = overflow + '0';
+	if (digits == size_r)
+		return (0);
+	r[digits] = '\0';
+	i = 0;
+	j = digits - 1;
+
+	while (i < j)
+	{
+		char temp = r[i];
+
+		r[i++] = r[j];
+		r[j--] = temp;
 	}
 	return (r);
 }
