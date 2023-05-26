@@ -24,6 +24,8 @@ int main(int argc, char **argv)
 	{
 		printf("0\n");
 	}
+	else
+	{
 	coins = 0;
 	coins += n / 25;
 	n %= 25;
@@ -35,5 +37,6 @@ int main(int argc, char **argv)
 	n %= 2;
 	coins += n;
 	printf("%d\n", coins);
+	}
 	return (0);
 }
