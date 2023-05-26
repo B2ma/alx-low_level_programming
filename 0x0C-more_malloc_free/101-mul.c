@@ -9,7 +9,7 @@
   * @argv: number of arrays
   * Return: 0 always
   */
-int main(argc, *argv)
+int main(int argc, char **argv)
 {
 	int mul, num1, num2;
 
@@ -20,13 +20,12 @@ int main(argc, *argv)
 	}
 	num1 = atoi(argv[1]);
 	num2 = atoi(argv[2]);
-
-	if (!isdigit(num1) || !isdigit(num2))
+	if (!isdigit(*argv[1]) || !isdigit(*argv[2]))
 	{
 		fprintf(stderr, "Error\n");
 		return (98);
 	}
 	mul = num1 * num2;
-	_putchar("%d\n", mul);
+	printf("%d\n", mul);
 	return (0);
 }
