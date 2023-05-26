@@ -8,15 +8,32 @@
  */
 int main(void)
 {
-	unsigned long a = 1, b = 2, c, count;
+	unsigned long int a = 1, b = 2, count;
+	unsigned long int a1;
+	unsigned long int a2;
+	unsigned long int b1;
+	unsigned long int b2;
+	unsigned long int large = 1000000000;
 
-	printf("%lu, %lu", a, b);
-	for (count = 3; count <= 98; count++)
+	printf("%lu", a);
+	for (count = 1; count <= 91; count++)
 	{
-		c = a + b;
-		printf(", %lu", c);
-		a = b;
-		b = c;
+		printf(", %lu", b);
+		b += a;
+		a = b - a;
+	}
+	a1 = (a / large);
+	a2 = (a % large);
+	b1 = (b / large);
+	b2 = (b / large);
+	for (count = 92; count <= 99; count++)
+	{
+		printf(", %lu", b1 + (b2 / large));
+		printf("%lu", b2 % large);
+		b1 = b1 + a1;
+		a1 = b1 - a1;
+		b2 = b2 + a2;
+		a2 = b2 - a2;
 	}
 	printf("\n");
 	return (0);
