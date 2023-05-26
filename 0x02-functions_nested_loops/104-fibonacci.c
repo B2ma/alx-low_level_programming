@@ -16,7 +16,7 @@ int main(void)
 	unsigned long int large = 1000000000;
 
 	printf("%lu", a);
-	for (count = 1; count <= 91; count++)
+	for (count = 1; count < 91; count++)
 	{
 		printf(", %lu", b);
 		b += a;
@@ -26,7 +26,7 @@ int main(void)
 	a2 = (a % large);
 	b1 = (b / large);
 	b2 = (b / large);
-	for (count = 92; count <= 99; count++)
+	for (count = 92; count < 99; count++)
 	{
 		printf(", %lu", b1 + (b2 / large));
 		printf("%lu", b2 % large);
