@@ -1,1 +1,1 @@
-This is a project about arguments passed to your program
+This is a collection of low level programming projects in C

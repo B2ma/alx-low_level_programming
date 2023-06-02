@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include<ctype.h>
+#include<gmp.h>
 #include "main.h"
 
 /**
@@ -11,21 +12,26 @@
   */
 int main(int argc, char **argv)
 {
-	int mul, num1, num2;
+	mpz_t mul, num1, num2;
 
 	if (argc != 3)
 	{
 		fprintf(stderr, "Error\n");
 		return (98);
 	}
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[2]);
-	if (!isdigit(*argv[1]) || !isdigit(*argv[2]))
+	mpz_init(num1);
+	mpz_init(num2);
+	mpz_init(mul);
+	if (mpz_set_str(num1, argv[1], 10 == -1) ||
+			mpz_set_str(num2, argv[2], 10 == -1))
 	{
 		fprintf(stderr, "Error\n");
 		return (98);
 	}
-	mul = num1 * num2;
-	printf("%d\n", mul);
+	mpz_mul(mul, num1, num2);
+	gmp_printf("%Zd\n", mul);
+	mpz_clear(num1);
+	mpz_clear(num2);
+	mpz_clear(mul);
 	return (0);
 }
