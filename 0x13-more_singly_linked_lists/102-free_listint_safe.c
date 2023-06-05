@@ -20,7 +20,7 @@ size_t free_listint_safe(listint_t **h)
 		if (current->next <= current)
 		{
 			*h = NULL;
-			return (0);
+			return (count);
 		}
 		current = current->next;
 	}
