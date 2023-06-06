@@ -7,25 +7,36 @@
     */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *current = *h;
-	listint_t *next_node;
+	listint_t *slow = *h;
+	listint_t *fast = *h;
 	size_t count = 0;
 
 	if (h == NULL || *h == NULL)
 		return (count);
-	current = *h;
-	while (current != NULL)
+	while (slow != NULL && fast != NULL && fast->next != NULL)
 	{
-		if (current->next <= current)
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast)
 		{
+			while (*h != slow)
+			{
+				listint_t *tmp = *h;
+				*h = (*h)->next;
+				count++;
+				free(tmp);
+			}
 			*h = NULL;
-			count++;
-			break;
+			return (count);
 		}
-		next_node = current->next;
-		free(current);
+	}
+	while (*h != NULL)
+	{
+		listint_t *tmp = *h;
+		*h = (*h)->next;
 		count++;
-		current = next_node;
+		free(tmp);
 	}
 	*h = NULL;
 	return (count);
