@@ -6,41 +6,42 @@
     */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *hare, *tortoise, *tmp, *last;
+	listint_t *current, *tmp;
 	size_t count = 0;
+	int loop_detected = 0;
 
 	if (h == NULL || *h == NULL)
 		return (0);
-	tortoise = *h;
-	hare = *h;
-	last = NULL;
-	while (tortoise != NULL && tortoise->next != NULL)
+	current = *h;
+	while (current != NULL)
 	{
-		hare = hare->next;
-		tortoise = tortoise->next->next;
-		if (hare == tortoise)
+		if (loop_detected && current == *h)
 		{
-			tortoise = *h;
-			while (tortoise != hare)
-			{
-				last = hare;
-				hare = hare->next;
-				tmp = tortoise->next;
-				free(tortoise);
-				count++;
-				tortoise = tmp;
-			}
-			last->next = NULL;
 			*h = NULL;
-			return (count);
+			break;
 		}
-	}
-	while (*h != NULL)
-	{
-		tmp = *h;
-		*h = (*h)->next;
-		free(tmp);
-		count++;
+		if (current->next >= current)
+		{
+			if (!loop_detected)
+			{
+				loop_detected = 1;
+				current->next = NULL;
+			}
+			else
+			{
+				tmp = current;
+				current = current->next;
+				free(tmp);
+				count++;
+			}
+		}
+		else
+		{
+			tmp = current;
+			current = current->next;
+			free(tmp);
+			count++;
+		}
 	}
 	*h = NULL;
 	return (count);
