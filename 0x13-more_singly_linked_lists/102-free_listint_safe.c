@@ -1,5 +1,4 @@
 #include "lists.h"
-
 /**
     * free_listint_safe - frees a listint_t list
     * @h: pointer to the list
@@ -7,24 +6,45 @@
     */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *current, *next_node;
+	listint_t *current, *tmp;
 	size_t count = 0;
+	int loop_detected = 0;
 
 	if (h == NULL || *h == NULL)
 		return (0);
 	current = *h;
 	while (current != NULL)
 	{
-		count++;
-		next_node = current->next;
-
-		if (current <= next_node)
+		if (current->next >= current)
 		{
-			free(current);
-			break;
+			if (loop_detected == 0)
+			{
+				tmp = current->next;
+				current->next = NULL;
+				current = tmp;
+				loop_detected = 1;
+			}
+			else
+			{
+				if (current->next == *h)
+				{
+					free(*h);
+					count++;
+					break;
+				}
+				tmp = current->next;
+				free(current);
+				current = tmp;
+				count++;
+			}
 		}
-		free(current);
-		current = next_node;
+		else
+		{
+			tmp = current->next;
+			free(current);
+			current = tmp;
+			count++;
+		}
 	}
 	*h = NULL;
 	return (count);
