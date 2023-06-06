@@ -24,11 +24,12 @@ listint_t *find_listint_loop(listint_t *head)
 			tortoise = head;
 			while (tortoise != hare)
 			{
+				if (hare->next == head)
+					return (head);
 				tortoise = tortoise->next;
 				hare = hare->next;
-				if (tortoise == hare)
-					return (tortoise);
 			}
+			return (tortoise);
 		}
 	}
 	return (NULL);
