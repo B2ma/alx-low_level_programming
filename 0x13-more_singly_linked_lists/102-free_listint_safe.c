@@ -6,7 +6,7 @@
     */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *current, *tmp;
+	listint_t *current, *next_node;
 	size_t count = 0;
 	int loop_detected = 0;
 
@@ -15,36 +15,31 @@ size_t free_listint_safe(listint_t **h)
 	current = *h;
 	while (current != NULL)
 	{
+		if (loop_detected && current == *h)
+		{
+			*h = NULL;
+			break;
+		}
+		next_node = current->next;
 		if (current->next >= current)
 		{
-			if (loop_detected == 0)
+			if (!loop_detected)
 			{
-				tmp = current->next;
-				current->next = NULL;
-				current = tmp;
 				loop_detected = 1;
+				current->next = NULL;
 			}
 			else
 			{
-				if (current->next == *h)
-				{
-					free(*h);
-					count++;
-					break;
-				}
-				tmp = current->next;
 				free(current);
-				current = tmp;
 				count++;
 			}
 		}
 		else
 		{
-			tmp = current->next;
 			free(current);
-			current = tmp;
 			count++;
 		}
+		current = next_node;
 	}
 	*h = NULL;
 	return (count);
