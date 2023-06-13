@@ -31,11 +31,9 @@ int main(int argc, char **argv)
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 		error_print("Error: Can't read from file", argv[1], 98);
-	if (access(argv[2], F_OK) == 0 && access(argv[2], W_OK) != 0)
-		error_print("Error: Can't write to file", argv[2], 99);
 	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (fd_to == -1)
-		error_print("Error: Can't write to file", argv[2], 99);
+		error_print("Error: Can't write to", argv[2], 99);
 	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 	{
 		bytes_written = write(fd_to, buffer, bytes_read);
@@ -43,7 +41,7 @@ int main(int argc, char **argv)
 		{
 			close(fd_from);
 			close(fd_to);
-			error_print("Error: Can't write to file", argv[2], 99);
+			error_print("Error: Can't write to", argv[2], 99);
 		}
 	}
 	if (bytes_read == -1)
