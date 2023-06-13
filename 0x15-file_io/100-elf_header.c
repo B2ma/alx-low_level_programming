@@ -58,7 +58,7 @@ void print_elf_header(int fd)
 			header.e_type == ET_DYN ? "Shared object file" : header.e_type
 			 == ET_EXEC ? "Executable file" : header.e_type == ET_REL ?
 			 "Relocatable file" : "Unknown type");
-	printf("  Entry point address:               %#X\n",(unsigned int) header.e_entry);
+	printf("  Entry point address:               %#lx\n", header.e_entry);
 }
 /**
   * main - Entry point
