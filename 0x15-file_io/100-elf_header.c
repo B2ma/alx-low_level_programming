@@ -14,7 +14,7 @@ void error_print(const char *sms, const char *filename, int number)
 	exit(number);
 }
 /**
-  * print_elf_header- prints the information contained in the ELF headeder
+  * print_elf_header- prints the information contained in the ELF header
   * @fd: file descriptor
   */
 void print_elf_header(int fd)
@@ -28,7 +28,7 @@ void print_elf_header(int fd)
 	if (bytes_read == 1 || bytes_read < (ssize_t)sizeof(magic))
 		error_print ("Can't read ELF magic Numbers", NULL, 98);
 	if (magic[0] != 0x7f || magic[1] != 'E' || magic[2] != 'L' || magic[3] != 'F')
-		error_print ("Not and ELF file", NULL, 98);
+		error_print ("Not an ELF file", NULL, 98);
 	offset = lseek(fd, ELF_HEADER_SIZE - sizeof(magic), SEEK_SET);
 	if (offset == -1)
 		error_print("Can't seek to  ELF header", NULL, 98);
@@ -38,26 +38,27 @@ void print_elf_header(int fd)
 	printf("ELF Header:\n");
 	printf("  Magic:  ");
 	for (i = 0; i < sizeof(magic); i++)
-	{
 		printf("%02x ", magic[i]);
-	}
 	printf("\n");
 	printf("  Class:                             %s\n", header.e_ident[EI_CLASS]
-			== ELFCLASS32 ? "ELF32" : "ELF64");
+			== ELFCLASS32 ? "ELF32" : header.e_ident[EI_CLASS] ==
+			ELFCLASS64 ? "ELF64" : "<unknown>");
 	printf("  Data:                              %s\n", header.e_ident[EI_DATA] ==
-			ELFDATA2LSB ?
-			"2's complement, little endian" : "2's complement, big endian");
+			ELFDATA2LSB ? "2's complement, little endian" :  header.e_ident
+			[EI_DATA] == ELFDATA2MSB ? "2's complement, big endian" : "<unknown>");
 	printf("  Version:                           %d (current)\n", header.e_ident
 			[EI_VERSION]);
 	printf("  OS/ABI:                            %s\n", header.e_ident[EI_OSABI]
-			== ELFOSABI_SYSV ? "UNIX - System V" : "Others");
+			== ELFOSABI_SYSV ? "UNIX - System V" :  header.e_ident[EI_OSABI]
+			== ELFOSABI_LINUX ? "UNIX - Linux" : "<unknown>");
 	printf("  ABI Version:                       %d\n", header.e_ident
 			[EI_ABIVERSION]);
 	printf("  Type:                              %s\n", header.e_type == ET_EXEC ?
 			"Executable file" :
-			(header.e_type == ET_DYN ? "Shared object file" : "Others"));
-	printf("  Entry point address:               %#lx\n", (unsigned long)
-			header.e_entry);
+			header.e_type == ET_DYN ? "Shared object file" : header.e_type
+			 == ET_EXEC ? "Executable file" : header.e_type == ET_REL ?
+			 "Relocatable file" : "Unknown type");
+	printf("  Entry point address:               %#X\n",(unsigned int) header.e_entry);
 }
 /**
   * main - Entry point
