@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 		error_print("Error: Can't read from file", 98);
-	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd_to == -1)
 		error_print("Error: Can't write to file", 99);
 	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
