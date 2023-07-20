@@ -19,6 +19,7 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 	newNode->n = n;
 	if (newNode == NULL)
 	{
+		free(newNode);
 		return (NULL);
 	}
 	if (*head == NULL)
