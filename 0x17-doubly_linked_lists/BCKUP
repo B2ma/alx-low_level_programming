@@ -1,0 +1,137 @@
+#include "lists.h"
+/**
+  * insert_dnodeint_at_index - inserts a new node at a given position
+  * @h: head pointer
+  * @idx: index where to add the node
+  * @n: the value of the node
+  * Return: pointer to newNode or NULL
+  */
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
+{
+	dlistint_t *newNode, *temp;
+	size_t len = dlistint_len(*h);
+	unsigned int i;
+
+	if (h == NULL || idx > len)
+	{
+		return (NULL);
+	}
+	if (idx == 0)
+	{
+		return (add_dnodeint(h, n));
+	}
+	if (idx == len)
+	{
+		return (add_dnodeint_end(h, n));
+	}
+
+	newNode = malloc(sizeof(dlistint_t));
+
+	if (newNode == NULL)
+	{
+		return (NULL);
+	}
+	newNode->n = n;
+	temp = *h;
+	for (i = 0; i < idx - 1; i++)
+	{
+		temp = temp->next;
+	}
+	newNode->next = temp->next;
+	newNode->prev = temp;
+
+	if (temp->next != NULL)
+	{
+		temp->next->prev = newNode;
+	}
+	temp->next = newNode;
+	return (newNode);
+}
+/**
+  * add_dnodeint_end - adds a new node at the end of a dlistint_t list
+  * @head: pointer to head pointer of the list
+  * @n: data of the new node
+  * Return: the address of the new element, or NULL if it failed
+  */
+dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+{
+dlistint_t *newNode, *temp;
+
+if (head == NULL)
+{
+return (NULL);
+}
+newNode = (dlistint_t *)malloc(sizeof(struct dlistint_s));
+if (newNode == NULL)
+{
+free(newNode);
+return (NULL);
+}
+newNode->n = n;
+if (*head == NULL)
+{
+newNode->next = NULL;
+newNode->prev = NULL;
+*head = newNode;
+return (newNode);
+}
+temp = *head;
+while (temp->next != NULL)
+{
+temp = temp->next;
+}
+temp->next = newNode;
+newNode->prev = temp;
+return (newNode);
+}
+/**
+  * add_dnodeint - adds a new node at the beginning of a dlistint_t list
+  * @head: pointer to head pointer of the list
+  * @n: data of the new node
+  * Return: the address of the new element, or NULL if it failed
+  */
+dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+{
+dlistint_t *newNode;
+
+if (head == NULL)
+{
+return (NULL);
+}
+newNode = (dlistint_t *)malloc(sizeof(struct dlistint_s));
+if (newNode == NULL)
+{
+free(newNode);
+return (NULL);
+}
+newNode->n = n;
+if (*head == NULL)
+{
+newNode->next = NULL;
+newNode->prev = NULL;
+*head = newNode;
+return (newNode);
+}
+newNode->next = *head;
+newNode->prev = NULL;
+(*head)->prev = newNode;
+*head = newNode;
+return (newNode);
+}
+/**
+  * dlistint_len -returns the number of elements in a linked dlistint_t list
+  * @h: pointer to head of double linked list
+  * Return: number of elements
+  */
+size_t dlistint_len(const dlistint_t *h)
+{
+size_t i = 0;
+const dlistint_t *temp = h;
+
+while (temp != NULL)
+{
+temp = temp->next;
+++i;
+}
+return (i);
+}
