@@ -27,15 +27,11 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		free(nodeToDelete);
 		return (1);
 	}
-	for (i = 0; i < index; i++)
+	for (i = 0; i < index - 1; i++)
 	{
-		if (nodeToDelete == NULL)
-		{
-			return (-1);
-		}
 		nodeToDelete = nodeToDelete->next;
 	}
-	if (nodeToDelete == NULL || nodeToDelete->next == NULL)
+	if (nodeToDelete == NULL || nodeToDelete->next == NULL || i >= index)
 	{
 		return (-1);
 	}
