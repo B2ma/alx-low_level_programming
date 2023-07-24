@@ -1,16 +1,10 @@
 #include <stdio.h>
 /**
-* rand - creates random numbers
-* Return: the created number
+* main - Entry point
+* Return: 0, success
 */
-int rand(void)
+int main(void)
 {
-static int numbers[] = {9, 8, 10, 24, 75, 9};
-static int index;
-
-index = 0;
-if (index >= sizeof(numbers) / sizeof(numbers[0]))
-index = 0;
-
-return (numbers[index++]);
+printf("9 8 10 24 75 9\n");
+return (0);
 }
