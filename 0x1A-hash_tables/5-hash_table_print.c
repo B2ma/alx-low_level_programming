@@ -17,7 +17,7 @@ void hash_table_print(const hash_table_t *ht)
 		current = ht->array[i];
 		while (current != NULL)
 		{
-			if(!the_first)
+			if (!the_first)
 				printf(", ");
 			printf("'%s': '%s'", current->key, current->value);
 			the_first = 0;
@@ -25,4 +25,4 @@ void hash_table_print(const hash_table_t *ht)
 		}
 	}
 	printf("}\n");
-}	
+}

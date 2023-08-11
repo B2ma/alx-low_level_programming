@@ -38,9 +38,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(newNode->key);
 		free(newNode->value);
 		free(newNode);
-		return(0);
+		return (0);
 	}
 	newNode->next = ht->array[index];
 	ht->array[index] = newNode;
-	return(1);
+	return (1);
 }
