@@ -9,14 +9,11 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index = key_index((unsigned char *)key, ht->size);
-	hash_node_t *newNode;
-	hash_node_t *current;
+	hash_node_t *newNode, *current;
 
 	if (ht == NULL || key == NULL || key[0] == '\0')
 		return (0);
 	current = ht->array[index];
-	if (value == NULL)
-		value = "";
 	while (current != NULL)
 	{
 		if (strcmp(current->key, key) == 0)
@@ -24,12 +21,14 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			free(current->value), current->value = (value != NULL)
 				? strdup(value) : strdup("");
 		if (current->value == NULL)
-		{
 			return (0);
-		}
 		return (1);
 	}
 	current = current->next;
+	}
+	while (ht->array[index] != NULL)
+	{
+		index = (index + 1) % ht->size;
 	}
 	newNode = malloc(sizeof(hash_node_t));
 	if (newNode == NULL)
