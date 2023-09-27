@@ -1,26 +1,28 @@
 # Make file for school executable
 CC = gcc
 SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
 NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean oclean fclean re
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+.SECONDEXPANSION:
+
+$(NAME): $$(OBJ)
 	$(CC) -Wall -Werror -Wextra -pedantic $^ -o $@
 
 clean:
-	-$(RM) *~ $(NAME)
-
+	rm -f *~ $(NAME)
 oclean:
-	-$(RM) $(patsubst %.c,%.o,$(SRC))
+	rm -f $(OBJ)
 
-fclean: oclean clean
+fclean: oclean  clean
 
 re: fclean all
 
 ifeq ($(wildcard m.h),)
-$(error Header file m.h not found!)
-endif
 
+endif
