@@ -9,11 +9,10 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 
 all: $(NAME)
 
+.SECONDEXPANSION:
+
 $(NAME): $(OBJ)
 	$(CC) -Wall -Werror -Wextra -pedantic $^ -o $@
-
-%.o: %.c
-	$(CC) -Wall -Werror -Wextra -pedantic -c $< -o $@
 
 clean:
 	rm -f *~ $(NAME)
