@@ -11,7 +11,7 @@ all: $(NAME)
 
 .SECONDEXPANSION:
 
-$(NAME): $(OBJ)
+$(NAME): $$(OBJ)
 	$(CC) -Wall -Werror -Wextra -pedantic $^ -o $@
 
 clean:
