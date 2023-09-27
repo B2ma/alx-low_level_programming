@@ -1,0 +1,13 @@
+# Make file for school executable
+CC = gcc
+SRC = main.c school.c
+
+all: clean school
+
+
+school:  $(SRC)
+	$(CC) -o $@ $^
+
+clean:
+	@rm -f school
+
