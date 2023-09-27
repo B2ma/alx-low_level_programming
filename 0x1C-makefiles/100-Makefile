@@ -23,3 +23,6 @@ fclean: oclean  clean
 
 re: fclean all
 
+ifeq ($(wildcard m.h),)
+
+endif
